@@ -1,0 +1,120 @@
+{
+  "info": {
+    "name": "Gamestore API",
+    "_postman_id": "gamestore-collection-001",
+    "description": "Colección de pruebas para la API RESTful de Gamestore.\nFlujo recomendado:\n1. Crear Desarrolladora\n2. Crear Videojuego (usando el id de la desarrolladora)\n3. Probar el resto de endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Desarrolladoras",
+      "item": [
+        {
+          "name": "1. Crear Desarrolladora",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "http://localhost:8080/api/desarrolladoras/", "host": ["localhost"], "port": "8080", "path": ["api", "desarrolladoras", ""] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Electronic Arts\",\n  \"sitioWeb\": \"https://www.ea.com\"\n}"
+            }
+          }
+        },
+        {
+          "name": "2. Listar todas las Desarrolladoras",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:8080/api/desarrolladoras/", "host": ["localhost"], "port": "8080", "path": ["api", "desarrolladoras", ""] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Videojuegos",
+      "item": [
+        {
+          "name": "3. Crear Videojuego",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "http://localhost:8080/api/videojuegos/", "host": ["localhost"], "port": "8080", "path": ["api", "videojuegos", ""] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"FIFA 2025\",\n  \"precio\": 59.99,\n  \"codigoRegistro\": \"EA-FIFA-2025\",\n  \"genero\": \"DEPORTES\",\n  \"desarrolladora\": {\n    \"id\": 1\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "4. Listar todos los Videojuegos",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:8080/api/videojuegos/", "host": ["localhost"], "port": "8080", "path": ["api", "videojuegos", ""] }
+          }
+        },
+        {
+          "name": "5. Obtener Videojuego por ID",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:8080/api/videojuegos/1", "host": ["localhost"], "port": "8080", "path": ["api", "videojuegos", "1"] }
+          }
+        },
+        {
+          "name": "6. Actualizar Videojuego (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "http://localhost:8080/api/videojuegos/1", "host": ["localhost"], "port": "8080", "path": ["api", "videojuegos", "1"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"FIFA 2025 Ultimate Edition\",\n  \"precio\": 79.99,\n  \"codigoRegistro\": \"EA-FIFA-2025\",\n  \"genero\": \"DEPORTES\",\n  \"desarrolladora\": {\n    \"id\": 1\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "7. Eliminar Videojuego",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "http://localhost:8080/api/videojuegos/1", "host": ["localhost"], "port": "8080", "path": ["api", "videojuegos", "1"] }
+          }
+        },
+        {
+          "name": "8. Buscar Videojuego por Título",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/videojuegos/buscar?titulo=fifa",
+              "host": ["localhost"], "port": "8080",
+              "path": ["api", "videojuegos", "buscar"],
+              "query": [{ "key": "titulo", "value": "fifa" }]
+            }
+          }
+        },
+        {
+          "name": "9. Buscar por Rango de Precio",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/videojuegos/rango-precio?min=10&max=70",
+              "host": ["localhost"], "port": "8080",
+              "path": ["api", "videojuegos", "rango-precio"],
+              "query": [{ "key": "min", "value": "10" }, { "key": "max", "value": "70" }]
+            }
+          }
+        },
+        {
+          "name": "10. Aplicar Descuento (PATCH)",
+          "request": {
+            "method": "PATCH",
+            "url": {
+              "raw": "http://localhost:8080/api/videojuegos/1/descuento?porcentaje=15",
+              "host": ["localhost"], "port": "8080",
+              "path": ["api", "videojuegos", "1", "descuento"],
+              "query": [{ "key": "porcentaje", "value": "15" }]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
