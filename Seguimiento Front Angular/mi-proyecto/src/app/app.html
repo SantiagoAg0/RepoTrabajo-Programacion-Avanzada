@@ -1,0 +1,96 @@
+<div class="container">
+  <h1> Directorio de Usuarios</h1>
+  <p class="subtitulo">Datos consumidos desde JSONPlaceholder API</p>
+
+  <!-- Cargando usuarios -->
+  <div *ngIf="cargando()" class="estado-cargando">
+     Cargando usuarios...
+  </div>
+
+  <!-- Error usuarios -->
+  <div *ngIf="error()" class="estado-error">
+     {{ error() }}
+  </div>
+
+  <!-- Tabla usuarios -->
+  <div *ngIf="!cargando() && !error()">
+
+    <p class="contador">
+      Total de usuarios: <strong>{{ usuarios().length }}</strong>
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Teléfono</th>
+          <th>Empresa</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let usuario of usuarios()">
+          <td>{{ usuario.id }}</td>
+          <td>{{ usuario.name }}</td>
+          <td>@{{ usuario.username }}</td>
+          <td>
+            <a [href]="'mailto:' + usuario.email">
+              {{ usuario.email }}
+            </a>
+          </td>
+          <td>{{ usuario.phone }}</td>
+          <td>{{ usuario.company.name }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <hr>
+
+  <!-- ================= POSTS ================= -->
+
+  <h2> Lista de Posts</h2>
+
+  <!-- Cargando posts -->
+  <div *ngIf="cargandoPosts()" class="estado-cargando">
+     Cargando posts...
+  </div>
+
+  <!-- Error posts -->
+  <div *ngIf="errorPosts()" class="estado-error">
+     {{ errorPosts() }}
+  </div>
+
+  <!-- Tabla posts -->
+  <div *ngIf="!cargandoPosts() && !errorPosts()">
+
+    <p class="contador">
+      Total de posts: <strong>{{ posts().length }}</strong>
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>User ID</th>
+          <th>Título</th>
+          <th>Contenido</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let post of posts()">
+          <td>{{ post.id }}</td>
+          <td>{{ post.userId }}</td>
+          <td>{{ post.title }}</td>
+          <td>{{ post.body }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
